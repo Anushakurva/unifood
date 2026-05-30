@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unifood Menu | Order Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#FBF9F4] text-[#2C2A29] font-['Plus_Jakarta_Sans'] pt-40">
+
+    <header class="fixed top-0 left-0 w-full z-40 bg-white border-b border-[#EAE6DF] shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="font-bold text-sm text-[#3A4D39] shrink-0 hover:text-[#C75B39] transition-colors">
+                <i class="fa-solid fa-arrow-left mr-2 text-xs"></i> Back to Home
+            </a>
+            
+            <div class="relative w-full max-w-md mx-6">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="menu-search" placeholder="Search dish name..." class="w-full pl-11 pr-4 py-2.5 rounded-full border border-gray-200 outline-none focus:border-[#3A4D39] text-sm bg-[#F5F2EA]">
+            </div>
+
+            <div class="flex items-center space-x-6 shrink-0">
+                <label class="flex items-center space-x-2 cursor-pointer select-none">
+                    <input type="checkbox" id="veg-toggle" checked class="hidden peer">
+                    <div class="w-9 h-5 bg-gray-200 peer-checked:bg-green-600 rounded-full relative transition-colors after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:w-4 after:h-4 after:rounded-full after:transition-all peer-checked:after:translate-x-4"></div>
+                    <span class="text-xs font-bold text-green-700 flex items-center"><i class="fa-solid fa-square-caret-up mr-1 text-sm"></i> Veg</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer select-none">
+                    <input type="checkbox" id="nonveg-toggle" checked class="hidden peer">
+                    <div class="w-9 h-5 bg-gray-200 peer-checked:bg-red-600 rounded-full relative transition-colors after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:w-4 after:h-4 after:rounded-full after:transition-all peer-checked:after:translate-x-4"></div>
+                    <span class="text-xs font-bold text-red-700 flex items-center"><i class="fa-solid fa-square-caret-up mr-1 text-sm rotate-180"></i> Non-Veg</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 border-t border-[#EAE6DF] overflow-x-auto whitespace-nowrap scrollbar-none py-3 px-6">
+            <div class="max-w-7xl mx-auto flex space-x-3" id="sticky-category-strip">
+                <button class="category-strip-btn active" data-cat="all">All Items</button>
+                <button class="category-strip-btn" data-cat="Soups">Soups</button>
+                <button class="category-strip-btn" data-cat="Starters">Starters</button>
+                <button class="category-strip-btn" data-cat="Biryani">Rice & Biryani</button>
+                <button class="category-strip-btn" data-cat="Mandi">Mandi Spreads</button>
+                <button class="category-strip-btn" data-cat="Bevarages">Beverages</button>
+                <button class="category-strip-btn" data-cat="Desserts">Desserts</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24">
+        <div id="category-sections-wrapper" class="space-y-12">
+            </div>
+    </main>
+
+    <button onclick="toggleCart()" class="fixed bottom-6 right-6 z-50 bg-[#3A4D39] text-white px-6 py-4 rounded-full shadow-2xl flex items-center space-x-3 transform hover:scale-105 transition-all">
+        <i class="fa-solid fa-basket-shopping"></i>
+        <span class="font-bold text-sm">View Basket</span>
+        <span id="cart-count" class="bg-[#C75B39] text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold">0</span>
+    </button>
+
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white z-50 shadow-2xl border-l border-[#EAE6DF] translate-x-full transition-transform duration-300 flex flex-col justify-between hidden">
+        <div class="p-6 border-b border-[#EAE6DF] flex items-center justify-between bg-[#FBF9F4]">
+            <h3 class="font-bold text-lg text-[#2C3A2B]"><i class="fa-solid fa-basket-shopping text-[#C75B39] mr-2"></i> Current Basket</h3>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-black text-xl"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div id="cart-items-container" class="p-6 flex-1 overflow-y-auto space-y-4">
+            <p class="text-sm text-gray-400 text-center py-12">Your basket is currently empty.</p>
+        </div>
+
+        <div class="p-6 border-t border-[#EAE6DF] bg-[#FBF9F4] space-y-4">
+            <div class="flex justify-between items-center font-bold text-lg text-[#2C3A2B]">
+                <span>Grand Total:</span>
+                <span id="cart-total">₹0.00</span>
+            </div>
+            <div class="space-y-2">
+                <input type="text" id="cust-name" placeholder="Your Name" class="w-full text-sm p-3 rounded-xl border border-gray-200 outline-none focus:border-[#3A4D39] bg-white">
+                <input type="text" id="cust-address" placeholder="Delivery Address or Table Number" class="w-full text-sm p-3 rounded-xl border border-gray-200 outline-none focus:border-[#3A4D39] bg-white">
+            </div>
+            <button onclick="sendOrderToWhatsApp()" class="w-full bg-[#25D366] text-white font-bold py-3.5 rounded-xl hover:bg-[#20ba5a] transition-all flex items-center justify-center space-x-2 text-sm shadow-md">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Send via WhatsApp Order</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

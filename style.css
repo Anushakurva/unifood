@@ -1,0 +1,31 @@
+/* Custom Category Selector Scrolling Config */
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Category Strip Button Layout elements */
+.category-strip-btn {
+    background-color: #FFFFFF;
+    color: #5C5A54;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 9999px;
+    border: 1px solid #EAE6DF;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+.category-strip-btn:hover {
+    background-color: #F5F2EA;
+    color: #2C2A29;
+    border-color: #3A4D39;
+}
+.category-strip-btn.active {
+    background-color: #3A4D39;
+    color: #FFFFFF;
+    border-color: #3A4D39;
+}
